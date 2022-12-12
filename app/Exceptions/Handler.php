@@ -7,6 +7,7 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use ApiHandler;
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -46,5 +47,16 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        //checa se estou em uma api para aplicar um tratamento de exceção personalizado
+        if($request->is('api/*'))
+        {
+            return $this->tratarErros($exception);
+        }
+
+        return parent::render($request, $exception);
     }
 }

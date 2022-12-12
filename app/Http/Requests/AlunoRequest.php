@@ -30,4 +30,24 @@ class AlunoRequest extends FormRequest
             'turma_id' => ['required', 'int', 'exists:turmas,id']
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'nome' => 'NOME',
+            'nascimento' => 'DATA DE NASCIMENTO',
+            'genero' => 'GÊNERO',
+            'turma_id' => 'TURMA'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório.',
+            'between' => 'O campo :attribute deve possuir de 2 até 100 caracteres.',
+            'date' => 'O campo :attribute não é uma data válida.',
+            'size' => 'O campo :attribute aceita apenas 1 caracter.'            
+        ];
+    }
 }
