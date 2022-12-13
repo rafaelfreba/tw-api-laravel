@@ -15,7 +15,7 @@ trait ApiHandler
      * @param Throwable $exception
      * @return Response
      */
-    public function tratarErros(Throwable $exception): Response
+    public function tratarErros(Throwable $exception): Response|false
     {
         //se ocorrer uma exceção do tipo específico
         if ($exception instanceof ModelNotFoundException) {
@@ -28,6 +28,8 @@ trait ApiHandler
 
             return $this->validationException($exception);
         }
+
+        return false;
     }
 
     /**
