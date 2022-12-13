@@ -54,7 +54,13 @@ class Handler extends ExceptionHandler
         //checa se estou em uma api para aplicar um tratamento de exceção personalizado
         if($request->is('api/*'))
         {
-            return $this->tratarErros($exception);
+            $respostaPersonalizada =  $this->tratarErros($exception);
+            
+            if($respostaPersonalizada)
+            {
+                return $respostaPersonalizada;
+            }
+
         }
 
         return parent::render($request, $exception);

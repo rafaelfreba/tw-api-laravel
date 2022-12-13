@@ -16,7 +16,7 @@ class AlunoController extends Controller
      */
     public function index(): Collection
     {
-
+        // $a = 0/0; -> causa uma exceção
         return Aluno::get();
     }
 
