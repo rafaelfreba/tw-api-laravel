@@ -17,6 +17,8 @@ class AlunoController extends Controller
     public function index(): Collection
     {
         // $a = 0/0; -> causa uma exceção
+        //Aluno::get()->makeHidden('turma_id') ->esconde o atributo
+        //Aluno::get()->makeVisible('created_at') ->exibe o atributo
         return Aluno::get();
     }
 
