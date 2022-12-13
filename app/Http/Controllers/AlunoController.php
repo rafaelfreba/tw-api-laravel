@@ -5,21 +5,33 @@ namespace App\Http\Controllers;
 use App\Models\Aluno;
 use Illuminate\Http\Response;
 use App\Http\Requests\AlunoRequest;
+use App\Http\Resources\AlunoCollection;
+use App\Http\Resources\AlunoResource;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return AlunoCollection
      */
-    public function index(): Collection
+    public function index(Request $request): Alunocollection
     {
         // $a = 0/0; -> causa uma exceção
         //Aluno::get()->makeHidden('turma_id') ->esconde o atributo
         //Aluno::get()->makeVisible('created_at') ->exibe o atributo
-        return Aluno::get();
+        if($request->query('relacao') == 'turma')
+        {
+            $alunos = Aluno::with('turma')->paginate(2);
+
+        }else {
+
+            $alunos = Aluno::paginate(2);
+        }
+        
+        return new AlunoCollection($alunos);
     }
 
     /**
@@ -37,11 +49,12 @@ class AlunoController extends Controller
      * Display the specified resource.
      *
      * @param  Aluno $aluno
-     * @return Aluno
+     * @return AlunoResource
      */
-    public function show(Aluno $aluno): Aluno
+    public function show(Aluno $aluno): AlunoResource
     {
-        return $aluno;
+        //utilizando uma camada de transformação (api resource) para apenas um item
+        return new AlunoResource($aluno);
     }
 
     /**
