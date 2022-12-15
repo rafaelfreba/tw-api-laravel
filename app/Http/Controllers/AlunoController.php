@@ -7,7 +7,6 @@ use Illuminate\Http\Response;
 use App\Http\Requests\AlunoRequest;
 use App\Http\Resources\AlunoCollection;
 use App\Http\Resources\AlunoResource;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
