@@ -23,6 +23,7 @@ class AlunoResource extends JsonResource
 
         //utilizando uma classe para gerar o HATEOAS
         return [
+            'id' => $this->id,
             'nome' => strtoupper($this->nome),
             'nascimento' => date('d/m/Y', strtotime($this->nascimento)),
             'genero' => $this->genero == 'M' ? 'Masculino' : ($this->genero == 'F' ? 'Feminino' : 'Outro'),
