@@ -13,6 +13,15 @@ use SimpleXMLElement;
 class AlunoController extends Controller
 {
     /**
+     * @OA\Get(
+     *      path="/api/alunos",
+     *      summary="Lista dos alunos cadastrados",
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *      )
+     * )
+     * 
      * Display a listing of the resource.
      *
      * @return AlunoCollection
@@ -44,6 +53,22 @@ class AlunoController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *      path="/api/alunos/{id}",
+     *      summary="Mostra os detalhes de um aluno",
+     *      @OA\Parameter(
+     *          description="Id que identifica o aluno",
+     *          in="path",
+     *          name="id",
+     *          required=false,
+     *          @OA\Schema(type="int"),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *      )
+     * ) 
+     * 
      * Display the specified resource.
      *
      * @param  Aluno $aluno
